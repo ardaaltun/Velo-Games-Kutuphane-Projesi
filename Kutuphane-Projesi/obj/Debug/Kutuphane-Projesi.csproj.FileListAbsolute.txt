@@ -1,0 +1,7 @@
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\bin\Debug\Kutuphane-Projesi.exe.config
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\bin\Debug\Kutuphane-Projesi.exe
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\bin\Debug\Kutuphane-Projesi.pdb
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\obj\Debug\Kutuphane-Projesi.csproj.AssemblyReference.cache
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\obj\Debug\Kutuphane-Projesi.csproj.CoreCompileInputs.cache
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\obj\Debug\Kutuphane-Projesi.exe
+E:\_DESKTOP_APPS\GitHub_Projects\Velo-Games-Kutuphane-Projesi\Kutuphane-Projesi\obj\Debug\Kutuphane-Projesi.pdb
