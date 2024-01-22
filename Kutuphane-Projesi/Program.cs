@@ -15,8 +15,13 @@ namespace Kutuphane_Projesi
             bool anamenu = true;
             int secim;
             KutuphaneSinifi kutuphane = new KutuphaneSinifi();
-            KitapSinifi k1 = new KitapSinifi("Ardanin Hayati", "Arda Altun", 0001, 3, 0);
+            KitapSinifi k1 = new KitapSinifi("Ardanin Hayati", "Arda Altun", 0001, 3, 0, 14);
+            KitapSinifi k2= new KitapSinifi("Arabalar", "Reco eko", 0002, 5, 0, 14);
+            KitapSinifi k3= new KitapSinifi("gezegenler", "newton", 000, 33, 11, 14);
+
             kutuphane.KitapEkle(k1);
+            kutuphane.KitapEkle(k2);
+            kutuphane.KitapEkle(k3);
 
             while (!bitti)
             {
@@ -24,11 +29,13 @@ namespace Kutuphane_Projesi
                 {
                     Console.WriteLine("Menu:");
                     Console.WriteLine("1. Kitap Ekle");
-                    Console.WriteLine("2. Kitap Detay Goster");
-                    Console.WriteLine("3. Butun Kitaplari Listele");
-                    Console.WriteLine("4. Programi Kapat");
+                    Console.WriteLine("2. Kitap Arama");
+                    Console.WriteLine("3. Tum Kitaplari Listele");
+                    Console.WriteLine("4. Kitap Odunc Alma");
+                    Console.WriteLine("5. Kitap Iade Etme");
+                    Console.WriteLine("6. Programi Kapat");
 
-                    Console.Write("Secim: (1-4): ");
+                    Console.Write("Secim: (1-6): ");
                 }
                 
 
@@ -38,14 +45,15 @@ namespace Kutuphane_Projesi
                     {
                         // Kitap Ekle
                         case 1:
+                            Console.Clear();
                             anamenu = false;
                             Console.WriteLine("KITAP EKLE");
                             Console.WriteLine("------------------------");
 
-                            Console.Write("Kitap Ismini Girin: ");
+                            Console.Write("Kitap Ismini Girin (Iptal icin Q'ya basin): ");
                             string kitapIsim = Console.ReadLine();
                             Console.WriteLine();
-
+                            if(kitapIsim.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
                             Console.Write("Yazar Ismini Girin: ");
                             string yazarIsim = Console.ReadLine();
                             Console.WriteLine();
@@ -62,7 +70,7 @@ namespace Kutuphane_Projesi
                             int oduncsay = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine();
 
-                            KitapSinifi kitap = new KitapSinifi(kitapIsim, yazarIsim, isbnNo, kopyasay, oduncsay);
+                            KitapSinifi kitap = new KitapSinifi(kitapIsim, yazarIsim, isbnNo, kopyasay, oduncsay, 14);
                             kutuphane.KitapEkle(kitap);
 
                             Console.WriteLine("Kitap basariyla eklendi... Ana menuye yonlendiriliyorsunuz...");
@@ -70,26 +78,83 @@ namespace Kutuphane_Projesi
                             break;
 
 
-                        // Kitap detayi
+                        // Kitap ara (ilk karsilastigi kitabi dondurur, ayni isimli yazar olursa yazilacak algoritmayi yazmaya ugrasmadim basic c# bilgisi olculdugu icin)
                         case 2:
-                            Console.WriteLine("KITAP DETAYI");
+                            Console.Clear();
+                            Console.WriteLine("KITAP ARA");
                             Console.WriteLine("------------------------");
-                            kutuphane.TumKitaplariGoruntule();
+                            Console.Write("Kitap Ismi veya Yazar ismi Girin (Iptal icin Q'ya basin: ");
+                            string isim = Console.ReadLine();
+                            if (isim.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            {
+                                if(k.Baslik.ToLower().Contains(isim) || k.Yazar.ToLower().Contains(isim))
+                                {
+                                    kutuphane.KitapDetay(k);
+                                    break;
+                                }
+                            }
                             break;
 
                         // Tum kitaplari yazdir
                         case 3:
+                            Console.Clear();
                             Console.WriteLine("BUTUN KITAPLARI GORUNTULE");
                             Console.WriteLine("------------------------");
+                            kutuphane.TumKitaplariGoruntule();
                             break;
-                        
-                            //Cikis
                         case 4:
+                            Console.Clear();
+                            Console.WriteLine("KITAP ODUNC ALMA");
+                            Console.WriteLine("------------------------");
+                            Console.Write("Odunc Alinacak Kitap Ismini Girin (Iptal icin Q'ya basin: ");
+                            string odunc = Console.ReadLine();
+                            if (odunc.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            {
+                                if (k.Baslik.ToLower().Contains(odunc) || k.Yazar.ToLower().Contains(odunc))
+                                {
+                                    Console.Clear();
+                                    kutuphane.KitapOdunc(k);
+                                    Console.WriteLine("------------------------");
+                                    Console.WriteLine("Odunc Alinan Kitap Bilgisi: ");
+                                    kutuphane.KitapDetay(k);
+                                    anamenu = true;
+                                    break;
+                                }
+                            }
+                            break;
+                        case 5:
+                            Console.Clear();
+                            Console.WriteLine("KITAP IADE ETME");
+                            Console.WriteLine("------------------------");
+                            Console.Write("Odunc Verilecek Kitap Ismini Girin (Iptal icin Q'ya basin: ");
+                            string iade = Console.ReadLine();
+                            if (iade.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            {
+                                if (k.Baslik.ToLower().Contains(iade) || k.Yazar.ToLower().Contains(iade))
+                                {
+                                    Console.Clear();
+                                    kutuphane.KitapIade(k);
+                                    Console.WriteLine("------------------------");
+                                    Console.WriteLine("Odunc Verilen Kitap Bilgisi: ");
+                                    kutuphane.KitapDetay(k);
+                                    anamenu = true;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        //Cikis
+                        case 6:
+                            Console.Clear();
                             Console.WriteLine("Cikis yapiliyor...");
                             Thread.Sleep(1200);
                             bitti = true;
                             return;
                         default:
+                            Console.Clear();
                             Console.WriteLine("Gecersiz menu numarasi, lutfen belirtilen seceneklerden birini secin.");
                             break;
                     }
@@ -97,6 +162,7 @@ namespace Kutuphane_Projesi
 
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Gecersiz menu numarasi, lutfen belirtilen seceneklerden birini secin.");
                 }
 
