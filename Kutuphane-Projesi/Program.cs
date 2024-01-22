@@ -125,7 +125,7 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("KITAP ODUNC ALMA");
                             Console.WriteLine("------------------------");
                             Console.Write("Odunc Alinacak Kitap Ismini Girin (Iptal icin Q'ya basin: ");
-                            string odunc = Console.ReadLine();
+                            string odunc = Console.ReadLine().ToLower();
                             if (odunc.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
                             else
                             {
@@ -160,7 +160,7 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("KITAP IADE ETME");
                             Console.WriteLine("------------------------");
                             Console.Write("Odunc Verilecek Kitap Ismini Girin (Iptal icin Q'ya basin: ");
-                            string iade = Console.ReadLine();
+                            string iade = Console.ReadLine().ToLower();
                             if (iade.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
                             else
                             {
