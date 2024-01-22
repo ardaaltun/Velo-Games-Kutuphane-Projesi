@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -58,7 +59,7 @@ namespace Kutuphane_Projesi
                             string yazarIsim = Console.ReadLine();
                             Console.WriteLine();
 
-                            Console.Write("ISBN No Girin: ");
+                            Console.Write("ISBN No Girin (4 hane) ");
                             int isbnNo = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine();
 
@@ -84,16 +85,32 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("KITAP ARA");
                             Console.WriteLine("------------------------");
                             Console.Write("Kitap Ismi veya Yazar ismi Girin (Iptal icin Q'ya basin: ");
-                            string isim = Console.ReadLine();
+                            string isim = Console.ReadLine().ToLower();
                             if (isim.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
-                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            else
                             {
-                                if(k.Baslik.ToLower().Contains(isim) || k.Yazar.ToLower().Contains(isim))
+                                bool buldu = false;
+                                foreach (KitapSinifi k in kutuphane.Kitaplar)
                                 {
-                                    kutuphane.KitapDetay(k);
-                                    break;
+                                    if (k.Baslik.ToLower().Contains(isim) || k.Yazar.ToLower().Contains(isim))
+                                    {
+                                        kutuphane.KitapDetay(k);
+                                        anamenu = true;
+                                        buldu = true;
+                                        break;
+                                    }
+                                    
                                 }
+                                if(!buldu)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Kitap bulunamadi!!!");
+                                    Console.WriteLine("------------------------");
+                                    anamenu = true;
+                                }
+                                
                             }
+                            
                             break;
 
                         // Tum kitaplari yazdir
@@ -110,19 +127,33 @@ namespace Kutuphane_Projesi
                             Console.Write("Odunc Alinacak Kitap Ismini Girin (Iptal icin Q'ya basin: ");
                             string odunc = Console.ReadLine();
                             if (odunc.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
-                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            else
                             {
-                                if (k.Baslik.ToLower().Contains(odunc) || k.Yazar.ToLower().Contains(odunc))
+                                bool buldu = false;
+                                foreach (KitapSinifi k in kutuphane.Kitaplar)
+                                {
+                                    if (k.Baslik.ToLower().Contains(odunc) || k.Yazar.ToLower().Contains(odunc))
+                                    {
+                                        Console.Clear();
+                                        kutuphane.KitapOdunc(k);
+                                        Console.WriteLine("------------------------");
+                                        Console.WriteLine("Odunc Alinan Kitap Bilgisi: ");
+                                        kutuphane.KitapDetay(k);
+                                        anamenu = true;
+                                        buldu = true;
+                                        break;
+                                    }
+                                }
+                                if(!buldu)
                                 {
                                     Console.Clear();
-                                    kutuphane.KitapOdunc(k);
-                                    Console.WriteLine("------------------------");
-                                    Console.WriteLine("Odunc Alinan Kitap Bilgisi: ");
-                                    kutuphane.KitapDetay(k);
                                     anamenu = true;
-                                    break;
+                                    Console.WriteLine("Girilen veriye dair kitap bulunamadi!");
+                                    Console.WriteLine("------------------------");
                                 }
+                                
                             }
+                            
                             break;
                         case 5:
                             Console.Clear();
@@ -131,19 +162,34 @@ namespace Kutuphane_Projesi
                             Console.Write("Odunc Verilecek Kitap Ismini Girin (Iptal icin Q'ya basin: ");
                             string iade = Console.ReadLine();
                             if (iade.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
-                            foreach (KitapSinifi k in kutuphane.Kitaplar)
+                            else
                             {
-                                if (k.Baslik.ToLower().Contains(iade) || k.Yazar.ToLower().Contains(iade))
+                                bool buldu = false;
+                                foreach (KitapSinifi k in kutuphane.Kitaplar)
+                                {
+                                    if (k.Baslik.ToLower().Contains(iade) || k.Yazar.ToLower().Contains(iade))
+                                    {
+                                        Console.Clear();
+                                        kutuphane.KitapIade(k);
+                                        Console.WriteLine("------------------------");
+                                        Console.WriteLine("Odunc Verilen Kitap Bilgisi: ");
+                                        kutuphane.KitapDetay(k);
+                                        anamenu = true;
+                                        buldu = true;
+                                        break;
+                                    }
+                                }
+                                if(!buldu)
                                 {
                                     Console.Clear();
-                                    kutuphane.KitapIade(k);
-                                    Console.WriteLine("------------------------");
-                                    Console.WriteLine("Odunc Verilen Kitap Bilgisi: ");
-                                    kutuphane.KitapDetay(k);
                                     anamenu = true;
-                                    break;
+                                    Console.WriteLine("Girilen veriye dair kitap bulunamadi!");
+                                    Console.WriteLine("------------------------");
                                 }
+                                
+
                             }
+                            
                             break;
 
                         //Cikis
