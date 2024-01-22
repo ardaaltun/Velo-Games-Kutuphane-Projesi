@@ -17,8 +17,8 @@ namespace Kutuphane_Projesi
             int secim;
             KutuphaneSinifi kutuphane = new KutuphaneSinifi();
             KitapSinifi k1 = new KitapSinifi("Ardanin Hayati", "Arda Altun", 0001, 3, 0, 14);
-            KitapSinifi k2= new KitapSinifi("Arabalar", "Reco eko", 0002, 5, 0, 14);
-            KitapSinifi k3= new KitapSinifi("gezegenler", "newton", 000, 33, 11, 14);
+            KitapSinifi k2= new KitapSinifi("Arabalar", "Recaizade Mahmut Ekrem", 0002, 5, 0, 14);
+            KitapSinifi k3= new KitapSinifi("Gezegenler", "Isaac Newton", 0003, 33, 11, 14);
 
             kutuphane.KitapEkle(k1);
             kutuphane.KitapEkle(k2);
@@ -86,7 +86,7 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("------------------------");
                             Console.Write("Kitap Ismi veya Yazar ismi Girin (Iptal icin Q'ya basin: ");
                             string isim = Console.ReadLine().ToLower();
-                            if (isim.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            if (isim == "q") { Console.Clear(); anamenu = true; break; }
                             else
                             {
                                 bool buldu = false;
@@ -126,7 +126,7 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("------------------------");
                             Console.Write("Odunc Alinacak Kitap Ismini Girin (Iptal icin Q'ya basin: ");
                             string odunc = Console.ReadLine().ToLower();
-                            if (odunc.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            if (odunc == "q") { Console.Clear(); anamenu = true; break; }
                             else
                             {
                                 bool buldu = false;
@@ -161,7 +161,7 @@ namespace Kutuphane_Projesi
                             Console.WriteLine("------------------------");
                             Console.Write("Odunc Verilecek Kitap Ismini Girin (Iptal icin Q'ya basin: ");
                             string iade = Console.ReadLine().ToLower();
-                            if (iade.ToLower() == "q") { Console.Clear(); anamenu = true; break; }
+                            if (iade == "q") { Console.Clear(); anamenu = true; break; }
                             else
                             {
                                 bool buldu = false;
